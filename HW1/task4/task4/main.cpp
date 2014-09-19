@@ -11,60 +11,41 @@ int main()
 	int result = 0;
 	int aAbs = abs(a);
 	int bAbs = abs(b);
-	int remainderCheck = 0;
+	bool remainderCheck = false;
 	while (aAbs >= bAbs)
 	{
 		aAbs = aAbs - bAbs;
 		++result;
 		if (aAbs == 0)
 		{
-			remainderCheck = 1;
-		}
-	}
-	if (a > 0 && b > 0)
-	{
-		cout << "Result: " << result << endl;
-	}
-	if (a < 0 && b < 0)
-	{
-		if (remainderCheck = 1)
-		{
-			cout << "Result: " << result + 1 << endl;
-		}
-		else
-		{
-			result = result + 1; 
-			cout << "Result: " << result << endl;
-		}
-	}
-	if (a > 0 && b < 0)
-	{
-		if (remainderCheck = 0)
-		{
-			result = -result;
-			cout << "Result: " << result << endl;
-		}
-		else
-		{
-			result = -result;
-			cout << "Result: " << result << endl;
+			remainderCheck = true;
 		}
 	}
 	if (a < 0 && b > 0)
 	{
-		if (remainderCheck = 0)
+		if (remainderCheck == false)
 		{
-			cout << "Result: " << -(result + 1) << endl;
+			result = -(result + 1);
 		}
 		else
 		{
-			result = -(result + 1);
-			cout << "Result: " << result << endl;
+			result = -result;
 		}
-				
 	}
-	
-	system("pause");
+	else if (a < 0 && b < 0)
+	{
+		if (remainderCheck == false)
+		{
+			result++;
+		}
+	}
+	else if (a > 0 && b < 0)
+	{
+		result = -result;
+	}
+
+	cout << "Result: " << result << endl;
+
 	return 0;
 }
 
