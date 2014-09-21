@@ -1,11 +1,11 @@
 #include <iostream> 
-#include "time.h"
+#include <time.h>
 
 using namespace std;
 
 int main()
 {
-	srand(time(NULL));
+	srand(time(nullptr));
 
 	int length = 0;
 	int range = 0;
@@ -26,5 +26,6 @@ int main()
 	}
 	cout << endl << "Amount of nulls in this array is: " << amountOfNulls << endl;
 
+	delete[] arr;
 	return 0;
 }
