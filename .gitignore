@@ -182,3 +182,41 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+*~
+*.autosave
+*.a
+*.core
+*.moc
+*.o
+*.obj
+*.orig
+*.rej
+*.so
+.#*
+*.*#
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+Thumbs.db
+Makefile*
+*.pro.user*
+bin/*
+*.sdf
+*.Debug
+*.Release
+*.prf
+usabilityFiles/*
+
+# Generated editors
+**/generated/elements.h
+**/generated/pluginInterface.h
+**/generated/pluginInterface.cpp
+**/generated/ports.h
+plugin.qrc
+
+# Doxygen
+**/doxygen/html/*
+
+# Visual Paradigm temporaries
+umlDocumentation/*\~*
