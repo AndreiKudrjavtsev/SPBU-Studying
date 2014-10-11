@@ -7,15 +7,10 @@ void bubbleSort(int arr[], int length)
 {
 	for (int i = 0; i < length - 1; ++i)
 	{
-		for (int j = 0; j < length - 1; ++j)
+		for (int j = 0; j < length - 1 - i; ++j)
 		{
 			if (arr[j] > arr[j + 1])
-			{
-				int temp = 0;
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
+				swap(arr[j], arr[j + 1]); 
 		}
 	}
 }
@@ -44,17 +39,25 @@ void countingSort(int arr[], int length, int rangeOfValues)
 	delete[] auxiliaryArr;
 }
 
-void fillingArray(int a[], int length, int rangeOfValues)
+int * arrayCopy(int a[], int length)
 {
-	cout << "Your array: " << endl;
+	int *b = new int[length];
+	for (int i = 0; i < length; ++i)
+	{
+		b[i] = a[i];
+	}
+	return b;
+}
+
+void fillArray(int a[], int length, int rangeOfValues)
+{
 	for (int i = 0; i < length; ++i)
 	{
 		a[i] = rand() % rangeOfValues;
-		cout << a[i] << " ";
 	}
 }
 
-void printingArray(int a[], int length)
+void printArray(int a[], int length)
 {
 	for (int i = 0; i < length; ++i)
 	{
@@ -67,27 +70,29 @@ int main()
 	srand(time(nullptr));
 	
 	int rangeOfValues = 0;
-	cout << "Enter the range of values: " << endl;
+	cout << "enter the range of values (from 0 to your value): " << endl;
 	cin >> rangeOfValues;
 
 	int length = 0;
 	cout << "Enter the length of array: " << endl;
 	cin >> length; 
 
-	int *bubbleArr = new int[length];
-	fillingArray(bubbleArr, length, rangeOfValues);
-	bubbleSort(bubbleArr, length);
+	int *arr = new int[length];
+	fillArray(arr, length, rangeOfValues);
+	int *arr2 = arrayCopy(arr, length);
+	cout << "Your array: " << endl;
+	printArray(arr, length);
+	bubbleSort(arr, length); 
 	cout << endl << "Your bubble-sorted array: " << endl;
-	printingArray(bubbleArr, length);
+	printArray(arr, length);
 	cout << endl;
-
-	int *countArr = new int[length];
-	fillingArray(countArr, length, rangeOfValues);
-	countingSort(countArr, length, rangeOfValues);
+	countingSort(arr2, length, rangeOfValues); 
 	cout << endl << "Your counting-sorted array: " << endl;
-	printingArray(countArr, length);
+	printArray(arr2, length);
 
 	cout << endl;
+	delete[] arr;
+	delete[] arr2; 
 	system("pause");
 	return 0;
 }
