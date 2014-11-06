@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//сортировка пузырьком
 void bubbleSort(int arr[], int length)
 {
 	for (int i = 0; i < length - 1; ++i)
@@ -15,6 +16,7 @@ void bubbleSort(int arr[], int length)
 	}
 }
 
+//сортировка подсчетом
 void countingSort(int arr[], int length, int rangeOfValues)
 {
 	int *auxiliaryArr = new int[rangeOfValues];
@@ -39,6 +41,7 @@ void countingSort(int arr[], int length, int rangeOfValues)
 	delete[] auxiliaryArr;
 }
 
+//функци€ копировани€ массива
 int * arrayCopy(int a[], int length)
 {
 	int *b = new int[length];
@@ -49,6 +52,7 @@ int * arrayCopy(int a[], int length)
 	return b;
 }
 
+//функци€, заполн€юща€ массив
 void fillArray(int a[], int length, int rangeOfValues)
 {
 	for (int i = 0; i < length; ++i)
@@ -57,6 +61,7 @@ void fillArray(int a[], int length, int rangeOfValues)
 	}
 }
 
+//функци€, вывод€ща€ массив на экран
 void printArray(int a[], int length)
 {
 	for (int i = 0; i < length; ++i)
@@ -93,6 +98,9 @@ int main()
 	cout << endl;
 	delete[] arr;
 	delete[] arr2; 
-	system("pause");
 	return 0;
 }
+
+//tests: 
+// 0 0 0 0 0 0 0 0 0 0 - correct
+// 12 12 10 10 6 0 2 - correct
