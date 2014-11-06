@@ -1,46 +1,28 @@
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
 
 using namespace std;
 
 int main()
 {
-	ifstream file("../file.txt", ios::in);
-	if (!file.is_open())
-	{
-		cout << "File not found!" << endl;
-		return 1;
-	}
-
-	vector<string> data;
-
-	while (!file.eof()) {
-		string buffer;
-		file >> buffer;
-		data.push_back(buffer);
-	}
-
-	file.close();
-
+	ifstream file("file.txt");
+	char str[1000];
+	
 	int amountOfStrings = 0;
-
-	for (string const &line : data)
+	while (!file.eof())
 	{
-		cout << line << endl;
-		for (int i = 0; line[i] != '\0'; ++i)
+		file.getline(str, 100);
+		cout << str << endl;
+		for (int i = 0; str[i] != '\0'; i++)
 		{
-			if (line[i] != ' ' && line[i] != '\t')
+			if (str[i] != ' ' && str[i] != '\t')
 			{
-				++amountOfStrings;
+				amountOfStrings++;
 				break;
 			}
 		}
 	}
-
 	cout << "Result: " << amountOfStrings << endl;
-
+	file.close();
 	return 0;
-
 }

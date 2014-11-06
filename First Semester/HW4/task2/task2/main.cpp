@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+	//считываем массив из файла, в файле первый символ - длина массива
 	ifstream in("file.txt");
 
 	int length = 0;
@@ -19,9 +20,11 @@ int main()
 		cout << a[i] << " ";
 	}
 	cout << endl;
+	in.close();
 
 	qSort(a, 0, length - 1);
 
+	//пробегая по отсортированному массиву ищем более 1 подряд идущего элемента
 	int maxAmount = 0;
 	int maxIndex = 0;
 	int count = 0;
@@ -40,6 +43,11 @@ int main()
 	else
 		cout << "The most frequent element: " << a[maxIndex] << endl;
 
-	in.close();
+	delete[] a;
+	system("pause");
 	return 0;
 }
+//tests: 
+// array: 12 21 4 32 4 64 45 9 7 2 95 23 13 41 4 12 - correct
+// array: 0 0 0 0 0 0 0 0 0 - correct
+// array: 1 - correct

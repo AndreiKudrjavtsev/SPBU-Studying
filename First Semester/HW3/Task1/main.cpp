@@ -44,7 +44,7 @@ void qSort(int arr[], int first, int last)
 
 int main()
 {
-    srand(time(NULL));
+    srand(time(nullptr));
     int length = 0;
     cout << "Enter the length of array: " << endl;
     cin >> length;
@@ -64,6 +64,6 @@ int main()
         cout << arr[i] << " ";
     cout << endl;
 
-    delete [] a;
+    delete [] arr;
     return 0;
 }

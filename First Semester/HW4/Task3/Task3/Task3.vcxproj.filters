@@ -20,8 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\file.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
+    <Text Include="file.txt" />
   </ItemGroup>
 </Project>

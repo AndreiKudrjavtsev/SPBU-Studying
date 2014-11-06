@@ -44,7 +44,7 @@ void qSort(int arr[], int first, int last)
 
 int main()
 {
-    srand(time(NULL));
+    srand(time(nullptr));
 
     int length = 0;
     cout << "Enter the length of array: " << endl;
@@ -81,6 +81,7 @@ int main()
     else
         cout << "The most frequent element: " << arr[maxIndex] << endl;
 
+    delete[] arr;
     return 0;
 }
 

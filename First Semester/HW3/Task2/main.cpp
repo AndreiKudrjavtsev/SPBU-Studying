@@ -4,6 +4,8 @@
 
 using namespace std;
 
+const int range = 100;
+
 void insertionSort(int arr[], int start, int end)
 {
     for (int i = start + 1; i < end; ++i)
@@ -42,7 +44,7 @@ void qSort(int arr[], int first, int last)
         insertionSort(arr, first, j + 1);
 }
 
-bool elementSearch (int a[], int start, int end, int k)
+bool elementSearch(int a[], int start, int end, int k)
 {
     if (k == start || k == end)
         return true;
@@ -77,7 +79,7 @@ int main()
     cout << "Your array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        a[i] = rand() % 100;
+        a[i] = rand() % range;
         cout << a[i] << " ";
     }
     cout << endl;
@@ -86,7 +88,7 @@ int main()
 
     for (int i = 0; i < k; ++i)
     {
-        int t = rand() % 100;
+        int t = rand() % range;
         if (elementSearch(a, 0, n, t))
             cout << "There is a " << t <<" value in this array. " << endl;
         else
