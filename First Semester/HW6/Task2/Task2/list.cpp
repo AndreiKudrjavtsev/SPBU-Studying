@@ -84,7 +84,21 @@ void addElementWithSort(List *list, ElementType value)
 
 void deleteElementWithSort(List *list, ElementType value)
 {
-	
+	Position element = list->head;
+	bool correctionCheck = false;
+	while (element->next != nullptr)
+	{
+		if (element->next->value == value)
+		{
+			correctionCheck = true;
+			Position tmp = element->next;
+			element->next = element->next->next;
+			delete tmp;
+		}
+		element = element->next;
+	}
+	if (!correctionCheck)
+		cout << "Ёлемент не найден" << endl;
 }
 
 void deleteList(List *list)
