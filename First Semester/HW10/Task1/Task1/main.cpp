@@ -4,35 +4,15 @@
 
 using namespace std;
 
-//функци€ провер€юща€ дл€ каждого города существование дороги до другого города
-bool roadIsExisting(int *array, int amount)
+//функци€, провер€юща€ принадлежность города к какому-либо государству
+bool cityDoesNotBelongCountry(int *array, int amount)
 {
 	for (int i = 0; i < amount; ++i)
 	{
-		if (array[i] != -1)
+		if (array[i] == -1)
 			return true;
 	}
 	return false;
-}
-
-//реализаци€ алгоритма ‘лойда поиска кратчайших рассто€ний между вершинами графа
-void Floyd(int **matrix, int vertexAmount)
-{
-	for (int k = 0; k < vertexAmount; ++k)
-	{
-		for (int i = 0; i < vertexAmount; ++i)
-		{
-			for (int j = 0; j < vertexAmount; ++j)
-			{
-				if ((matrix[i][j] == -1) && (matrix[i][k] == -1) && (matrix[k][j] == -1))
-					j++;
-				else if ((matrix[i][k] == -1) || (matrix[k][j] == -1))
-					j++;
-				else
-					matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j]);
-			}
-		}
-	}
 }
 
 int main()
@@ -42,12 +22,12 @@ int main()
 	in >> n;
 
 	//создаем матрицу смежности, котора€ будет хранить дороги между городами
-	//если дороги не существует вводим -1 
+	//если дороги не существует вводим -1.
 	int **roads = new int *[n];
 	for (int i = 0; i < n; ++i)
 	{
 		roads[i] = new int[n];
-		for (int j = 0; j < n; ++i)
+		for (int j = 0; j < n; ++j)
 			roads[i][j] = -1;
 	}
 
@@ -75,7 +55,7 @@ int main()
 	in >> k;
 	//создаем массив столиц
 	int *capitals = new int[k];
-	for (int i = 0; i < n; ++i)
+	for (int i = 0; i < k; ++i)
 	{
 		in >> capitals[i];
 		country[capitals[i]] = capitals[i]; //столица изначально принадлежит своему государству
@@ -83,17 +63,46 @@ int main()
 	
 	in.close();
 
-	//Floyd(roads, n);
-	for (int i = 0; i < n; i++)
+	//полагаем все дороги в нашем графе заведомо меньшими 1000
+	int minDistance = 1000;
+	int closestCityIndex = 0;
+	//добавл€ем незан€тые города
+	while (cityDoesNotBelongCountry(country, n))
 	{
-		for (int j = 0; j < n; j++)
-			cout << roads[i][j] << " ";
-		cout << endl;
+		//бежим по государствам
+		for (int i = 0; i < k && cityDoesNotBelongCountry(country, n); i++)
+		{
+			//ищем города, принадлежащие этому гос-ву
+			for (int j = 0; j < n; j++)
+			{
+				if (country[j] == capitals[i])
+				{
+					//добавл€ем ближайшего из соседей
+					for (int l = 0; l < n; l++)
+					{
+						if (roads[j][l] < minDistance && roads[j][l] != -1 && country[l] == -1)
+						{
+							minDistance = roads[j][l];
+							closestCityIndex = l;
+						}
+					}
+				}
+			}
+			country[closestCityIndex] = capitals[i];
+			minDistance = 1000;
+		}
 	}
+
+	cout << "City belonging to country (cities going one by one): " << endl;
+	for (int i = 0; i < n; i++)
+		cout << country[i] << " ";
+	cout << endl;
 
 	for (int i = 0; i < n; ++i)
 		delete[] roads[i];
 	delete[] roads;
 	
+
 	return 0;
 }
+// test is in "input.txt" file - working correctly
