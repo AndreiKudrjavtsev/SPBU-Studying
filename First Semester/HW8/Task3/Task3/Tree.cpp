@@ -31,28 +31,32 @@ bool isBracketOrSpace(char a)
 	return a == '(' || a == ')' || a == ' ';
 }
 
-void scanTree(TreeNode *&tree, char a[], int i)
+void scanTree(TreeNode *&tree, char a[], int &i)
 {
-	while (a[i] != '\n')
+	if (isBracketOrSpace(a[i]))
 	{
-		if (isBracketOrSpace(a[i]))
-		{
-			i++;
-			scanTree(tree, a, i);
-		}
-		else if (isOperator(a[i]))
+		i++;
+		scanTree(tree, a, i);
+	}
+
+	else if (a[i] != '\n')
+	{
+		if (isOperator(a[i]))
 		{
 			tree = create(a[i]);
 			i++;
 			scanTree(tree->left, a, i);
 			scanTree(tree->right, a, i);
 		}
+
 		else
 		{
 			tree = create(a[i]);
 			i++;
 		}
 	}
+	else
+		return;
 }
 
 void calculateNode(TreeNode *&tree)
@@ -112,11 +116,11 @@ void printTree(TreeNode *tree)
 		return;
 	cout << tree->value << " ";
 	if (tree->left != nullptr)
-		cout << "(";
+		cout << "(" << " ";
 	printTree(tree->left);
 	printTree(tree->right);
 	if (tree->left != nullptr)
-		cout << ")";
+		cout << ")" << " ";
 }
 
 void printExp(TreeNode *tree)
@@ -142,4 +146,9 @@ void deleteTree(TreeNode *root)
 	if (root->right != nullptr)
 		deleteTree(root->right);
 	delete root;
+}
+
+double returnResult(TreeNode *&tree)
+{
+	return tree->currentResult;
 }

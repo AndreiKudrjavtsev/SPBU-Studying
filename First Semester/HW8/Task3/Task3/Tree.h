@@ -8,7 +8,7 @@ bool isOperator(char a);
 
 bool isBracketOrSpace(char a);
 
-void scanTree(TreeNode *&tree, char a[], int i);
+void scanTree(TreeNode *&tree, char a[], int &i);
 
 void calculateNode(TreeNode *&tree);
 
@@ -19,3 +19,5 @@ void printTree(TreeNode *tree);
 void printExp(TreeNode *tree);
 
 void deleteTree(TreeNode *root);
+
+double returnResult(TreeNode *&tree);
