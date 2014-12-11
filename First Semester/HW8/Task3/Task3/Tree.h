@@ -6,9 +6,9 @@ TreeNode *create(char value);
 
 bool isOperator(char a);
 
-bool isBrackerOrSpace(char a);
+bool isBracketOrSpace(char a);
 
-void addNode(TreeNode *&tree, char a[], int *&i);
+void scanTree(TreeNode *&tree, char a[], int i);
 
 void calculateNode(TreeNode *&tree);
 

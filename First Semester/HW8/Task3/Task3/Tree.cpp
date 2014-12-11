@@ -31,11 +31,80 @@ bool isBracketOrSpace(char a)
 	return a == '(' || a == ')' || a == ' ';
 }
 
-void addNode(TreeNode *&tree, char a[], int *&i);
+void scanTree(TreeNode *&tree, char a[], int i)
+{
+	while (a[i] != '\n')
+	{
+		if (isBracketOrSpace(a[i]))
+		{
+			i++;
+			scanTree(tree, a, i);
+		}
+		else if (isOperator(a[i]))
+		{
+			tree = create(a[i]);
+			i++;
+			scanTree(tree->left, a, i);
+			scanTree(tree->right, a, i);
+		}
+		else
+		{
+			tree = create(a[i]);
+			i++;
+		}
+	}
+}
 
-void calculateNode(TreeNode *&tree);
+void calculateNode(TreeNode *&tree)
+{
+	double res = 0;
+	switch (tree->value)
+	{
+		case '+':
+		{
+					res = tree->left->currentResult + tree->right->currentResult;
+					break;
+		}
+		case '-':
+		{
+					res = tree->left->currentResult - tree->right->currentResult;
+					break;
+		}
+		case '*':
+		{
+					res = tree->left->currentResult * tree->right->currentResult;
+					break;
+		}
+		case '/':
+		{
+					res = tree->left->currentResult / tree->right->currentResult;
+					break;
+		}
+	}
+	delete tree->left;
+	delete tree->right;
+	tree->left = nullptr;
+	tree->right = nullptr;
+	tree->value = '0';
+	tree->currentResult = res;
+}
 
-void calculateTree(TreeNode *&tree);
+void calculateTree(TreeNode *&tree)
+{
+	if (isOperator(tree->value))
+	{
+		if (!isOperator(tree->right->value) && !isOperator(tree->left->value))
+			calculateNode(tree);
+		else
+		{
+			if (isOperator(tree->left->value))
+				calculateTree(tree->left);
+			if (isOperator(tree->right->value))
+				calculateTree(tree->right);
+			calculateTree(tree);
+		}
+	}
+}
 
 void printTree(TreeNode *tree)
 {
@@ -63,4 +132,14 @@ void printExp(TreeNode *tree)
 		cout << ")";
 }
 
-void deleteTree(TreeNode *root);
+void deleteTree(TreeNode *root)
+{
+	if (!root)
+		return;
+	
+	if (root->left != nullptr)
+		deleteTree(root->left);
+	if (root->right != nullptr)
+		deleteTree(root->right);
+	delete root;
+}
