@@ -56,6 +56,52 @@ void decreasingPrint(TreeNode *root)
  
 void deleteElement(TreeNode *&root, ElementType value)
 {
+	if (root == nullptr)
+		return;
+
+	if (!elementSearch(root, value))
+		return;
+
+	if (root->value < value)
+		deleteElement(root->right, value);
+	else if (root->value > value)
+		deleteElement(root->left, value);
+	else if (root->left == nullptr && root->right == nullptr)
+	{
+		delete root;
+		root = nullptr;
+	}
+	else if (root->left == nullptr)
+	{
+		TreeNode *tmp = root;
+		root = root->right;
+		delete tmp;
+	}
+	else if (root->right == nullptr)
+	{
+		TreeNode *tmp = root;
+		root = root->left;
+		delete tmp;
+	}
+	else
+	{
+		TreeNode *tmp = root->right;
+		if (tmp->left == nullptr)
+		{
+			int element = tmp->value;
+			deleteElement(tmp, tmp->value);
+			root->value = element;
+		}
+		else
+		{
+			while (tmp->left->left != nullptr)
+				tmp = tmp->left;
+			int element = tmp->left->value;
+
+			deleteElement(tmp, tmp->left->value);
+			root->value = element;
+		}
+	}
 
 }
 
