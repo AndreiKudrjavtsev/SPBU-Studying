@@ -18,7 +18,7 @@ void searchName(PhoneBook book[], int sizeOfBook)
 	bool tmp = false;
 	for (int i = 0; i < sizeOfBook; ++i)
 	{
-		if (strcmp(book[i].name, name) == 0)
+		if (book[i].name == name)
 		{
 			cout << book[i].number << endl;
 			tmp = true;
@@ -36,7 +36,7 @@ void searchNumber(PhoneBook book[], int sizeOfBook)
 	bool tmp = false;
 	for (int i = 0; i < sizeOfBook; ++i)
 	{
-		if (strcmp(book[i].number, number) == 0)
+		if (book[i].number == number)
 		{
 			cout << book[i].name << endl;
 			tmp = true;
@@ -49,8 +49,8 @@ void searchNumber(PhoneBook book[], int sizeOfBook)
 void addBookInFile(PhoneBook book[], int size, int sizeOfFile)
 {
 	ofstream file;
-	file.open("database.txt", ios::app);
-	for (int i = sizeOfFile; i < size; ++i)
+	file.open("database.txt", ios::out);
+	for (int i = 0; i < size; ++i)
 	{
 		file << book[i].name << endl;
 		file << book[i].number << endl;
@@ -75,40 +75,40 @@ int main()
 	}
 	file.close();
 	int sizeOfFile = size;
-	int choise = 1;
-	while (choise)
+	int choice = 1;
+	while (choice)
 	{
 		cout << "0 - выйти " << endl
 			<< "1 - добавить запись (им€ и телефон) " << endl
 			<< "2 - найти телефон по имени " << endl
 			<< "3 - найти им€ по телефону " << endl
 			<< "4 - сохранить текущие данные в файл " << endl;
-		cin >> choise;
-		switch (choise)
+		cin >> choice;
+		switch (choice)
 		{
 			case 1:
 			{
-					  cout << "¬ведите им€: " << endl;
-					  cin >> book[size].name;
-					  cout << "¬ведите номер: " << endl;
-					  cin >> book[size].number;
-					  ++size;
-					  break;
+				cout << "¬ведите им€: " << endl;
+				cin >> book[size].name;
+				cout << "¬ведите номер: " << endl;
+				cin >> book[size].number;
+				++size;
+				break;
 			}
 			case 2:
 			{
-					  searchName(book, size);
-					  break;
+				searchName(book, size);
+				break;
 			}
 			case 3:
 			{
-					  searchNumber(book, size);
-					  break;
+				searchNumber(book, size);
+				break;
 			}
 			case 4:
 			{
-					  addBookInFile(book, size, sizeOfFile);
-					  break;
+				addBookInFile(book, size, sizeOfFile);
+				break;
 			}
 		}
 	}

@@ -20,25 +20,25 @@ int main()
 		{
 			case 1:
 			{
-					  cout << "Введите значение: " << endl;
-					  int tmpValue = 0;
-					  cin >> tmpValue;
-					  addElementWithSort(list, tmpValue);
-					  break;
+				cout << "Введите значение: " << endl;
+				int tmpValue = 0;
+				cin >> tmpValue;
+				addElementWithSort(list, tmpValue);
+				break;
 			}
 			case 2:
 			{
-					  cout << "Введите значение: " << endl;
-					  int tmpValue = 0;
-					  cin >> tmpValue;
-					  deleteElementWithSort(list, tmpValue);
-					  break;
+				cout << "Введите значение: " << endl;
+				int tmpValue = 0;
+				cin >> tmpValue;
+				deleteElement(list, tmpValue);
+				break;
 			}
 			case 3:
 			{
-					  print(list);
-					  cout << endl;
-					  break;
+				print(list);
+				cout << endl;
+				break;
 			}
 		}
 
@@ -46,5 +46,6 @@ int main()
 	deleteList(list);
 	return 0;
 }
-//Tест: добавил 0, 1, 2, распечатал - корректно. Удалил 2, распечатал - корректно.
-//Удалил 4 - не найден, то есть корректно.
+// Tест: добавил 0, 1, 2, распечатал - корректно. Удалил 2, распечатал - корректно.
+// Удалил 4 - не найден, то есть корректно.
+// Добавил 1, 2, распечатал - корректно. Удалил 1, распечатал - корректно.

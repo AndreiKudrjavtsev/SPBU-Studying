@@ -68,6 +68,8 @@ bool elementSearch(int a[], int start, int end, int k)
 
 int main()
 {
+    srand(time(nullptr));
+
     int n = 0;
     cout << "Enter the length of array: " << endl;
     cin >> n;
@@ -92,7 +94,7 @@ int main()
         if (elementSearch(a, 0, n, t))
             cout << "There is a " << t <<" value in this array. " << endl;
         else
-            cout << "There is not any " << t <<" value in this array. " << endl;
+            cout << "There is no any " << t <<" value in this array. " << endl;
     }
 
     delete []a;

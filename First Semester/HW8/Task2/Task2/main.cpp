@@ -22,52 +22,55 @@ int main()
 		{
 		case 1:
 		{
-				  int value = 0;
-				  cin >> value;
-				  addElement(tree, value);
-				  break;
+			int value = 0;
+			cout << "Enter the value: " << endl;
+			cin >> value;
+			addElement(tree, value);
+			break;
 		}
 		case 2:
 		{
-				  int value = 0; 
-				  cin >> value;
-				  if (!elementSearch(tree, value))
-				  {
-					  cout << "There is no " << value << " element in tree! " << endl;
-					  break;
-				  }
-				  else
-				  {
-					  deleteElement(tree, value);
-					  break;
-				  }
+			int value = 0; 
+			cout << "Enter the value: " << endl;
+			cin >> value;
+			if (!elementSearch(tree, value))
+			{
+				cout << "There is no " << value << " element in tree! " << endl;
+				break;
+			}
+			else
+			{
+				deleteElement(tree, value);
+				break;
+			}
 		}
 		case 3:
 		{
-				  int value = 0;
-				  cin >> value;
-				  if (!elementSearch(tree, value))
-				  {
-					  cout << "There is no " << value << " element in tree! " << endl;
-					  break;
-				  }
-				  else
-				  {
-					  cout << value << " element exists in tree " << endl;
-					  break;
-				  }
+			int value = 0;
+			cout << "Enter the value: " << endl;
+			cin >> value;
+			if (!elementSearch(tree, value))
+			{
+				cout << "There is no " << value << " element in Set! " << endl;
+				break;
+			}
+			else
+			{
+				cout << value << " element exists in Set " << endl;
+				break;
+			}
 		}
 		case 4:
 		{
-				  increasingPrint(tree);
-				  cout << endl;
-				  break;
+			increasingPrint(tree);
+			cout << endl;
+			break;
 		}
 		case 5:
 		{
-				  decreasingPrint(tree);
-				  cout << endl;
-				  break;
+			decreasingPrint(tree);
+			cout << endl;
+			break;
 		}
 		}
 	}

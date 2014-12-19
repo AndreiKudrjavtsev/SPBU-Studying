@@ -29,7 +29,7 @@ void print(List *list);
 void addElementWithSort(List *list, ElementType value);
 
 //функция удаления эл-та из списка с сохранением сортированности 
-void deleteElementWithSort(List *list, ElementType value);
+void deleteElement(List *list, ElementType value);
 
 //функция удаления списка
 void deleteList(List *list);

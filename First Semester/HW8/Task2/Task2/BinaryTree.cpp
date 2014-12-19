@@ -26,6 +26,9 @@ TreeNode *createNode(ElementType element)
 
 void addElement(TreeNode *&root, ElementType element)
 {
+	if (elementSearch(root, element))
+		return;
+
 	if (root == nullptr)
 		root = createNode(element);
 	else if (root->value > element)
@@ -127,4 +130,6 @@ bool elementSearch(TreeNode *root, ElementType element)
 		elementSearch(root->left, element);
 	else if (root->value < element)
 		elementSearch(root->right, element);
+	else
+		return false;
 }

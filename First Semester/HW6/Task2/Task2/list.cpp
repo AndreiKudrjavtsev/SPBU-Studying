@@ -82,10 +82,18 @@ void addElementWithSort(List *list, ElementType value)
 	}
 }
 
-void deleteElementWithSort(List *list, ElementType value)
+void deleteElement(List *list, ElementType value)
 {
 	Position element = list->head;
 	bool correctionCheck = false;
+	if (list->head->value == value)
+	{
+		correctionCheck = true;
+		Position tmp = list->head;
+		list->head = list->head->next;
+		delete tmp;
+		return;
+	}
 	while (element->next != nullptr)
 	{
 		if (element->next->value == value)
