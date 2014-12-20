@@ -24,8 +24,8 @@ int main()
 		matrix[i] = new int[n];
 	}
 	for (int i = 0; i < n; i++)
-	for (int j = 0; j < n; j++)
-		in >> matrix[i][j];
+		for (int j = 0; j < n; j++)
+			in >> matrix[i][j];
 	in.close();
 
 	//если пути между вершинами нет, обозначем его как inf
@@ -87,7 +87,14 @@ int main()
 	}
 
 	cout << endl;
-	system("pause");
+
+
+	for (int i = 0; i < n; ++i)
+		delete[] matrix[i];
+	delete[] verticeIsAdded;
+	delete[] minDist;
+	delete[] addedEdges;
+
 	return 0;
 }
 //ответ выводится на консоль в виде перечисления ребер оставного дерева
