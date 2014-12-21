@@ -10,7 +10,7 @@ struct ListElement;
 typedef ListElement *Position;
 
 //функция создания списка
-PointerList *create(ListElement choice);
+PointerList *create(ListElement *choice);
 
 //функция добавления элемента в голову списка
 void insertAsHead(PointerList *list, ElementType element);
