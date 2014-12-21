@@ -46,7 +46,7 @@ void qSort(int arr[], int first, int last)
 
 bool elementSearch(int a[], int start, int end, int k)
 {
-    if (k == start || k == end)
+    if (k == a[start] || k == a[end])
         return true;
     while (start != end)
     {
