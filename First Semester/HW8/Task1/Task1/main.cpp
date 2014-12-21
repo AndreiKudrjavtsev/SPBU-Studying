@@ -20,9 +20,9 @@ int main()
 
 	insertAsHead(list, rand() % range);
 	Position tmp = head(list);
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length - 1; i++)
 	{
-		insert(list, rand() % range, tmp);
+		insert(list, tmp, rand() % range);
 		tmp = next(list, tmp);
 	}
 
@@ -38,3 +38,5 @@ int main()
 	deleteList(list);
 	return 0;
 }
+// tests: 
+// entered like 10-15 random numbers on PointerList & ArrayList - all working correctly

@@ -49,12 +49,12 @@ ElementType returnValue(ArrayList *list, int position)
 	return list->array[position];
 }
 
-void insert(ArrayList *list, ElementType value, int position)
+void insert(ArrayList *list, int position, ElementType value)
 {
 	position += 1;
 	if (list->last < list->arraySize - 1)
 	{
-		for (int tmp = last(list); tmp != position; tmp--)
+		for (int tmp = list->last + 1; tmp != position; tmp--)
 			list->array[tmp] = list->array[tmp + 1];
 		list->array[position] = value;
 		list->last++;
@@ -77,7 +77,7 @@ void insert(ArrayList *list, ElementType value, int position)
 
 void insertAsHead(ArrayList *list, ElementType value)
 {
-	insert(list, value, -1);
+	insert(list, -1, value);
 }
 
 void deleteElement(ArrayList *list, int position)

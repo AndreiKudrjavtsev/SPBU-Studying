@@ -3,9 +3,6 @@
 
 using namespace std;
 
-typedef int ElementType;
-typedef ListElement *Position;
-
 struct ListElement
 {
 	ElementType value;
@@ -32,7 +29,7 @@ void insertAsHead(PointerList *list, ElementType value)
 	list->head = newElement;
 }
 
-void insert(PointerList *list, Position position, ElementType value)
+void insert(PointerList *list, ListElement *position, ElementType value)
 {
 	ListElement *newElement = new ListElement;
 	newElement->value = value;
@@ -40,16 +37,16 @@ void insert(PointerList *list, Position position, ElementType value)
 	position->next = newElement;
 }
 
-void deleteElement(PointerList *list, Position position)
+void deleteElement(PointerList *list, ListElement *position)
 {
-	Position tmp = position->next;
+	ListElement *tmp = position->next;
 	position->next = position->next->next;
 	delete tmp;
 }
 
 void deleteHead(PointerList *list)
 {
-	Position tmp = list->head;
+	ListElement *tmp = list->head;
 	list->head = list->head->next;
 	delete tmp;
 }
@@ -74,10 +71,10 @@ void printList(PointerList *list)
 	if (!list)
 		return;
 
-	Position tmp = list->head;
+	ListElement *tmp = list->head;
 	while (tmp != nullptr)
 	{
-		cout << tmp->value << " " << endl;
+		cout << tmp->value << " ";
 		tmp = tmp->next;
 	}
 }
@@ -116,7 +113,7 @@ ElementType returnValue(PointerList *list, ListElement *position)
 
 int listSize(PointerList *list)
 {
-	Position tmp = list->head;
+	ListElement *tmp = list->head;
 	int size = 0;
 	while (tmp != nullptr)
 	{
