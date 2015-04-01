@@ -4,8 +4,9 @@ namespace HW1
 {
     class BubbleSort
     {
-        public static void bubbleSort(int[] arr, int length)
+        public static void BubbleSort(int[] arr)
         {
+            int length = arr.Length;
             for (int i = 0; i < length - 1; ++i)
             {
                 for (int j = 0; j < length - 1 - i; ++j)
@@ -35,7 +36,7 @@ namespace HW1
                 Console.Write(array[i] + " ");
             }
             Console.WriteLine();
-            bubbleSort(array, length);
+            BubbleSort(array);
             Console.WriteLine("Sorted array: ");
             for (int i = 0; i < length; i++)
                 Console.Write(array[i] + " ");

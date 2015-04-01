@@ -4,7 +4,9 @@ namespace HW1
 {
     class SpiralTraverse
     {
-        // Everywhere: n - dimension of matrix. 
+        /// <summary>
+        /// Everywhere: n - dimension of matrix. 
+        /// </summary>
         public static void Main()
         {
             Console.WriteLine("Enter matrix dimension (1 odd number): ");
@@ -17,50 +19,61 @@ namespace HW1
             int[][] matrix = new int[n][];
             for (int i = 0; i < n; i++)
                 matrix[i] = new int[n];
-            fillMatrix(matrix, n, rangeMin, rangeMax);
+            fillMatrix(matrix, rangeMin, rangeMax);
             Console.WriteLine("Source matrix: ");
-            printMatrix(matrix, n);
+            printMatrix(matrix);
 
             Console.WriteLine("Matrix, traversed by spiral (start point - center): ");
-            traverse(matrix, n);
+            traverse(matrix);
             Console.WriteLine();
         }
 
-        // Function, that is filling matrix with random numbers from earlier setted range.
-        static void fillMatrix(int[][] matrix, int n, int rangeMin, int rangeMax)
+        /// <summary>
+        /// Function, that is filling matrix with random numbers from earlier setted range.
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="rangeMin"></param>
+        /// <param name="rangeMax"></param>
+        static void fillMatrix(int[][] matrix,int rangeMin, int rangeMax)
         {
             Random x = new Random();
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
+                for (int j = 0; j < matrix[i].GetLength(0); j++)
                     matrix[i][j] = x.Next(rangeMin, rangeMax);
         }
 
-        // Function, that is printing matrix on console.
-        static void printMatrix(int[][] matrix, int n)
+        /// <summary>
+        /// Function, that is printing matrix on console.
+        /// </summary>
+        /// <param name="matrix"></param>
+        static void printMatrix(int[][] matrix)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < matrix[i].GetLength(0); j++)
                     Console.Write("{0}\t", matrix[i][j]);
                 Console.WriteLine();
             }
         }
 
-        // Function, that is printing elements of  matrix, traversing by spiral.
-        static void traverse(int[][] matrix, int n)
+        /// <summary>
+        /// Function, that is printing elements of  matrix, traversing by spiral.
+        /// </summary>
+        /// <param name="matrix"></param>
+        static void traverse(int[][] matrix)
         {
             int amountOfVisited = 0;
-            int posRow = n / 2;
-            int posColumn = n / 2;
+            int posRow = matrix.GetLength(0) / 2;
+            int posColumn = matrix.GetLength(0) / 2;
             Console.Write(matrix[posRow][posColumn] + " ");
             amountOfVisited++;
-            string s = "up";
+            int direction = 0;
             int stepsAmount = 1;
-            while (amountOfVisited != n * n)
+            while (amountOfVisited != matrix.GetLength(0) * matrix.GetLength(0))
             {
-                switch (s)
+                switch (direction)
                 {
-                    case "up":
+                    case 0:
                         for (int i = 0; i < stepsAmount; i++)
                         {
                             if (posRow > 0)
@@ -70,37 +83,37 @@ namespace HW1
                                 amountOfVisited++;
                             }
                         }
-                        s = "right";
+                        direction = 1;
                         break;
 
-                    case "right":
+                    case 1:
                         for (int i = 0; i < stepsAmount; i++)
                         {
-                            if (posColumn < n)
+                            if (posColumn < matrix.GetLength(0))
                             {
                                 posColumn++;
                                 Console.Write(matrix[posRow][posColumn] + " ");
                                 amountOfVisited++;
                             }
                         }
-                        s = "down";
+                        direction = 2;
                         stepsAmount++;
                         break;
 
-                    case "down":
+                    case 2:
                         for (int i = 0; i < stepsAmount; i++)
                         {
-                            if (posRow < n)
+                            if (posRow < matrix.GetLength(0))
                             {
                                 posRow++;
                                 Console.Write(matrix[posRow][posColumn] + " ");
                                 amountOfVisited++;
                             }
                         }
-                        s = "left";
+                        direction = 3;
                         break;
 
-                    case "left":
+                    case 3:
                         for (int i = 0; i < stepsAmount; i++)
                         {
                             if (posColumn > 0)
@@ -110,7 +123,7 @@ namespace HW1
                                 amountOfVisited++;
                             }
                         }
-                        s = "up";
+                        direction = 0;
                         stepsAmount++;
                         break;
                 }
