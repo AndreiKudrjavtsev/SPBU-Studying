@@ -5,7 +5,6 @@ namespace HW2_Stack
     public class Stack<Type>
     {
         private StackElement head;
-        private int length;
 
         private class StackElement
         {
