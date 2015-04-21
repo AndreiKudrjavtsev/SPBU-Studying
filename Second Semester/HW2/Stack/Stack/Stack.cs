@@ -65,7 +65,7 @@ namespace HW2_Stack
         /// </summary>
         public void PrintStack()
         {
-            StackElement tmp = new StackElement();
+            StackElement tmp = head;
             while (tmp.next != null)
             {
                 Console.Write("{0} ", tmp.value);
