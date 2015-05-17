@@ -14,15 +14,6 @@ namespace UniqueList
             }
             base.InsertAsHead(value);
         }
-        
-        public override void InsertInPosition(T value, ListElement position)
-        {
-            if (IsContains(value))
-            {
-                throw new AddExistingException();
-            }
-            base.InsertInPosition(value, position);
-        }
 
         public override void DeleteByValue(T value)
         {
