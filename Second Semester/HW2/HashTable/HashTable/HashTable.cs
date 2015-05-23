@@ -1,9 +1,8 @@
 ﻿using System;
-using HW2_List;
 
-namespace HW2_HashTable
+namespace hashTable
 {
-    class HashTable
+    public class HashTable
     {
         private List<string>[] hashSet;
         private int tableSize;

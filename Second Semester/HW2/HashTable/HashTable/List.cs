@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace HW2_List
+namespace hashTable
 {
-    public class List<Type>
+    public class List<T>
     {
         private ListElement head;
 
@@ -11,7 +11,7 @@ namespace HW2_List
             /// <summary>
             /// Value of list element
             /// </summary>
-            public Type value { get; set; }
+            public T value { get; set; }
             /// <summary>
             /// link to the next list element
             /// </summary>
@@ -22,7 +22,7 @@ namespace HW2_List
         /// Function, adding element as head of the list
         /// </summary>
         /// <param name="value"></param>
-        public void InsertAsHead(Type value)
+        public void InsertAsHead(T value)
         {
             ListElement newElement = new ListElement();
             newElement.value = value;
@@ -31,39 +31,26 @@ namespace HW2_List
         }
 
         /// <summary>
-        /// Function, adding element in set position
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="position"></param>
-        public void InsertInPosition(Type value, ListElement position)
-        {
-            ListElement newElement = new ListElement();
-            newElement.value = value;
-            newElement.next = position.next;
-            position.next = newElement;
-        }
-
-        /// <summary>
-        /// Function, deleting element from set position
-        /// </summary>
-        /// <param name="position"></param>
-        public void DeleteInPosition(ListElement position)
-        {
-            position.next = position.next.next;
-        }
-
-        /// <summary>
         /// Function, deleting element by set value
         /// </summary>
         /// <param name="value"></param>
-        public void DeleteByValue(Type value)
+        public void DeleteByValue(T value)
         {
+            if (Equals(head.value, value))
+            {
+                head = head.next;
+                return;
+            }
             ListElement tmp = new ListElement();
             tmp = head;
-            while (tmp.next != null)
+            while (tmp != null)
             {
-                if (Equals(tmp.next.value, value))
-                    tmp.next = tmp.next.next;
+                if (Equals(tmp.value, value))
+                {
+                    tmp = tmp.next;
+                    return;
+                }
+                tmp = tmp.next;
             }
         }
 
@@ -81,12 +68,12 @@ namespace HW2_List
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool IsContains(Type value)
+        public bool IsContains(T value)
         {
             ListElement tmp = head;
-            while (tmp.next != null)
+            while (tmp != null)
             {
-                if (Equals(tmp.next.value, value))
+                if (Equals(tmp.value, value))
                     return true;
                 tmp = tmp.next;
             }

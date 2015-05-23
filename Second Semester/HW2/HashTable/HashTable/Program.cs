@@ -1,7 +1,7 @@
 ﻿using System;
-using HW2_List;
+using hashTable;
 
-namespace HW2_HashTable
+namespace hashTable
 {
     class Program
     {
