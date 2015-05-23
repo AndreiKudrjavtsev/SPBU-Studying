@@ -1,22 +1,22 @@
 ﻿using System;
-using HW2_StackCalculator;
+using StackCalculator;
 
-namespace HW2_ArrayStack
+namespace StackCalculator
 {
-    class ArrayStack<Type> : IStack<Type>
+    public class ArrayStack<T> : IStack<T>
     {
         private int lastElementIndex;
-        private Type[] stack;
+        private T[] stack;
 
         public ArrayStack(int size)
         {
             lastElementIndex = 0;
-            stack = new Type[size];
+            stack = new T[size];
         }
 
-        public void Push(Type value)
+        public void Push(T value)
         {
-            if (lastElementIndex == 0)
+            if (lastElementIndex == stack.Length - 1)
                 Array.Resize(ref stack, stack.Length * 2);
             stack[lastElementIndex] = value;
             lastElementIndex++;
@@ -34,11 +34,11 @@ namespace HW2_ArrayStack
             return lastElementIndex == 0;
         }
 
-        public Type Peek()
+        public T Peek()
         {
             if (lastElementIndex == 0)
                 throw new InvalidOperationException("Stack is empty!");
-            return stack[lastElementIndex];
+            return stack[lastElementIndex - 1];
         }
 
         public void PrintStack()
