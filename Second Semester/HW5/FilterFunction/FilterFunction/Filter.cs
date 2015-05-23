@@ -5,10 +5,10 @@ namespace FilterFunction
 {
     public static class Filter
     {
-        List<T> FilterFunction<T>(List<T> list, Func<T, bool> filter)
+        public static List<T> FilterFunction<T>(List<T> list, Func<T, bool> filter)
         {
             List<T> newList = new List<T>();
-            foreach (T value in newList)
+            foreach (T value in list)
             {
                 if (filter(value))
                     newList.Add(value);
