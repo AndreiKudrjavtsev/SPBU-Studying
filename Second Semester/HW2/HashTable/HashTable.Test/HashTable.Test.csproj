@@ -6,7 +6,7 @@
     <ProjectGuid>{FF49BE66-26B0-48E7-B931-056349682077}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>hashTable.Test</RootNamespace>
+    <RootNamespace>Hash.Test</RootNamespace>
     <AssemblyName>HashTable.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

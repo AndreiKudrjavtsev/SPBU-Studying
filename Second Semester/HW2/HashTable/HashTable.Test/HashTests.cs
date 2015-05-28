@@ -1,8 +1,8 @@
 ﻿using System;
-using hashTable;
+using Hash;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace hashTable.Test
+namespace Hash.Test
 {
     [TestClass]
     public class HashTests

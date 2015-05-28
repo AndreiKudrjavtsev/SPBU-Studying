@@ -7,7 +7,7 @@
     <ProjectGuid>{4960AC92-EE3C-4B26-9E0F-C95C8E73A29F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>hashTable</RootNamespace>
+    <RootNamespace>Hash</RootNamespace>
     <AssemblyName>HashTable</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

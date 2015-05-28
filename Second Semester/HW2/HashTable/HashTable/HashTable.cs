@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace hashTable
+namespace Hash
 {
+    /// <summary>
+    /// Hash table class
+    /// </summary>
     public class HashTable
     {
         private List<string>[] hashSet;
@@ -35,16 +38,6 @@ namespace hashTable
         }
 
         /// <summary>
-        /// Function, getting hash of element
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        private int GetHash (string element)
-        {
-            return HashFunction(element);
-        }
-
-        /// <summary>
         /// Function, adding element in hashtable 
         /// </summary>
         /// <param name="element"></param>
@@ -52,7 +45,7 @@ namespace hashTable
         {
             if (!IsContains(element))
             {
-                int key = GetHash(element);
+                int key = HashFunction(element);
                 hashSet[key].InsertAsHead(element);
             }
         }
@@ -64,10 +57,8 @@ namespace hashTable
         /// <returns></returns>
         public bool IsContains(string element)
         {
-            int key = GetHash(element);
-            if (hashSet[key].IsContains(element))
-                return true;
-            return false;
+            int key = HashFunction(element);
+            return (hashSet[HashFunction(element)].IsContains(element));
         }
 
         /// <summary>
@@ -76,7 +67,7 @@ namespace hashTable
         /// <param name="element"></param>
         public void DeleteFromHashTable(string element)
         {
-            int key = GetHash(element);
+            int key = HashFunction(element);
             if (IsContains(element))
             {
                 hashSet[key].DeleteByValue(element);

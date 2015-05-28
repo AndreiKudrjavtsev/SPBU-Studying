@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace hashTable
+namespace Hash
 {
     public class List<T>
     {

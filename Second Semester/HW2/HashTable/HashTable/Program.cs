@@ -1,7 +1,7 @@
 ﻿using System;
-using hashTable;
+using Hash;
 
-namespace hashTable
+namespace Hash
 {
     class Program
     {
