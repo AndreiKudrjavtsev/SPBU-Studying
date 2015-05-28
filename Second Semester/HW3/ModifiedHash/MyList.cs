@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace newHash
+namespace NewHash
 {
     public class MyList<T>
     {

@@ -1,22 +1,22 @@
 ﻿using System;
 
-namespace newHash
+namespace NewHash
 {
     public class ModifiedHash<T>
     {
         private MyList<T>[] hashSet;
         private int tableSize;
-        private Func<T, int> HashFunc;
+        private Func<T, int> hashFunc;
         
         /// <summary>
         /// table constructor with hash function and table size as params
         /// </summary>
         /// <param name="tableSize"></param>
-        /// <param name="HashFunc"></param>
-        public ModifiedHash(int tableSize, Func<T, int> HashFunc)
+        /// <param name="hashFunc"></param>
+        public ModifiedHash(int tableSize, Func<T, int> hashFunc)
         {
             this.tableSize = tableSize;
-            this.HashFunc = HashFunc;
+            this.hashFunc = hashFunc;
             hashSet = new MyList<T>[tableSize];
             for (int i = 0; i < tableSize; ++i)
             {
@@ -30,7 +30,7 @@ namespace newHash
         /// <param name="newHashFunc"></param>
         public void ChangeHashFunc(Func<T, int> newHashFunc)
         {
-            HashFunc = newHashFunc;
+            hashFunc = newHashFunc;
             MyList<T>[] newHashSet = new MyList<T>[tableSize];
             for (int i = 0; i < tableSize; i++)
             {
@@ -41,17 +41,12 @@ namespace newHash
                 var tmp = hashSet[i].head;
                 while (tmp != null)
                 {
-                    int key = GetHash(tmp.value);
+                    int key = hashFunc(tmp.value);
                     newHashSet[key].InsertAsHead(tmp.value);
                     tmp = tmp.next;
                 }
             }
             hashSet = newHashSet;
-        }
-
-        public int GetHash(T element)
-        {
-            return HashFunc(element);
         }
 
         /// <summary>
@@ -62,7 +57,7 @@ namespace newHash
         {
             if (!IsContains(element))
             {
-                int key = GetHash(element);
+                int key = hashFunc(element);
                 hashSet[key].InsertAsHead(element);
             }
         }
@@ -74,10 +69,8 @@ namespace newHash
         /// <returns></returns>
         public bool IsContains(T element)
         {
-            int key = GetHash(element);
-            if (hashSet[key].IsContains(element))
-                return true;
-            return false;
+            int key = hashFunc(element);
+            return hashSet[key].IsContains(element);
         }
 
         /// <summary>
@@ -86,7 +79,7 @@ namespace newHash
         /// <param name="element"></param>
         public void DeleteFromHashTable(T element)
         {
-            int key = GetHash(element);
+            int key = hashFunc(element);
             if (IsContains(element))
             {
                 hashSet[key].DeleteByValue(element);

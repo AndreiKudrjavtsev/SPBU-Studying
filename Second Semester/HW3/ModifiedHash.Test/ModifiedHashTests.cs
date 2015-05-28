@@ -1,5 +1,5 @@
 ﻿using System;
-using newHash;
+using NewHash;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ModifiedHashTests
@@ -39,10 +39,11 @@ namespace ModifiedHashTests
         [TestMethod]
         public void ChangeFuncTest()
         {
-            Assert.AreEqual(hash.GetHash(17), 7);
+            hash.AddToHashTable(11);
+            Assert.IsTrue(hash.IsContains(11));
             Func<int, int> hashFunc = (int val) => { return val % 7; };
             hash.ChangeHashFunc(hashFunc);
-            Assert.AreEqual(hash.GetHash(17), 3);
+            Assert.IsTrue(hash.IsContains(11));
         }
     }
 }

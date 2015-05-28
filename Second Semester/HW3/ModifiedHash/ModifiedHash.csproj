@@ -7,7 +7,7 @@
     <ProjectGuid>{EAB60454-0632-4984-A7C9-7F62E982D78F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>newHash</RootNamespace>
+    <RootNamespace>NewHash</RootNamespace>
     <AssemblyName>ModifiedHash</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
