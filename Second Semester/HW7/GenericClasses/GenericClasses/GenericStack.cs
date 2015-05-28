@@ -4,11 +4,15 @@ using System.Collections.Generic;
 
 namespace GenericClasses
 {
+    /// <summary>
+    /// Stack on generic
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class GenericStack<T> : IEnumerable<T>
     {
         private StackElement head;
 
-        public class StackElement
+        private class StackElement
         {
             /// <summary>
             /// value of stack element 
@@ -76,6 +80,10 @@ namespace GenericClasses
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// numerator for generic stack
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             StackElement tmp = head;
