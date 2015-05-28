@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ParseTree
 {
-    class OperationSubtraction
+    class OperationSubtraction : Operator
     {
+        public override int CalculateTree()
+        { return left.CalculateTree() - right.CalculateTree(); }
+
+        public override string Print()
+        { return "-"; }
     }
 }

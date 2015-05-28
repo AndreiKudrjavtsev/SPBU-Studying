@@ -6,7 +6,28 @@ using System.Threading.Tasks;
 
 namespace ParseTree
 {
-    class Operand
+    class Operand : TreeElement
     {
+        public int value;
+
+        public Operand(int val)
+        {
+            value = val;
+        }
+
+        public override bool AddElement(TreeElement treeElement)
+        {
+            return false;
+        }
+
+        public override int CalculateTree()
+        {
+            return value;
+        }
+
+        public override string PrintTree()
+        {
+            return value.ToString();
+        }
     }
 }

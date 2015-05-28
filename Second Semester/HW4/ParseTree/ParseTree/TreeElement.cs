@@ -10,7 +10,10 @@ namespace ParseTree
     {
         public abstract string PrintTree();
         public abstract int CalculateTree();
-        public abstract bool AdditionIsAvailable();
-        public abstract void AddElement();
+        /// <summary>
+        /// returns true and adds element, if possible
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool AddElement(TreeElement treeElement);
     }
 }
