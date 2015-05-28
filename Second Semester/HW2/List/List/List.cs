@@ -6,7 +6,7 @@ namespace MyList
     {
         private ListElement head;
 
-        public class ListElement
+        private class ListElement
         {
             /// <summary>
             /// Value of list element
@@ -27,28 +27,6 @@ namespace MyList
             newElement.value = value;
             newElement.next = head;
             head = newElement;
-        }
-
-        /// <summary>
-        /// Function, adding element in set position
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="position"></param>
-        public void InsertInPosition(T value, ListElement position)
-        {
-            ListElement newElement = new ListElement();
-            newElement.value = value;
-            newElement.next = position.next;
-            position.next = newElement;
-        }
-
-        /// <summary>
-        /// Function, deleting element from set position
-        /// </summary>
-        /// <param name="position"></param>
-        public void DeleteInPosition(ListElement position)
-        {
-            position.next = position.next.next;
         }
 
         /// <summary>
