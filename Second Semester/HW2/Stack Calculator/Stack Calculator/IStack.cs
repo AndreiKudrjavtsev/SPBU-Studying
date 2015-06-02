@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace HW2_StackCalculator
+namespace StackCalculator
 {
-    public interface IStack<Type>
+    public interface IStack<T>
     {
         /// <summary>
         /// Function, adding element in stack
         /// </summary>
         /// <param name="value"> </param>
-        void Push(Type value);
+        void Push(T value);
 
         /// <summary>
         /// Function, deleting element from stack
@@ -25,7 +25,7 @@ namespace HW2_StackCalculator
         /// Function, returning head element in stack
         /// </summary>
         /// <returns></returns>
-        Type Peek();
+        T Peek();
 
         /// <summary>
         /// Function, printing stack on console

@@ -1,9 +1,9 @@
 ﻿using System;
-using HW2_StackCalculator;
+using StackCalculator;
 
-namespace HW2_ListStack
+namespace StackCalculator
 {
-    public class ListStack<Type> : IStack<Type>
+    public class ListStack<T> : IStack<T>
     {
         private StackElement head;
 
@@ -12,14 +12,14 @@ namespace HW2_ListStack
             /// <summary>
             /// value of stack element 
             /// </summary>
-            public Type value { get; set; }
+            public T value { get; set; }
             /// <summary>
             /// link to the next stack element
             /// </summary>
             public StackElement next { get; set; }
         }
 
-        public void Push(Type value)
+        public void Push(T value)
         {
             StackElement newElement = new StackElement();
             newElement.next = head;
@@ -41,7 +41,7 @@ namespace HW2_ListStack
             return head == null;
         }
 
-        public Type Peek()
+        public T Peek()
         {
             return head.value;
         }
