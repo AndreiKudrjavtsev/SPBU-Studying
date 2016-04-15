@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{63294EB1-3044-4A23-A763-D9EB18804039}</ProjectGuid>
+    <ProjectGuid>{AA2B4E0B-5B2F-462A-A913-5F15C01654BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RobotsTest</RootNamespace>
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Robots\Robots.csproj">
-      <Project>{d5d893bc-b267-4a1f-ae90-00461f6fba64}</Project>
+      <Project>{d48d298b-8a26-4cd9-bc07-7dd6e16ed902}</Project>
       <Name>Robots</Name>
     </ProjectReference>
   </ItemGroup>

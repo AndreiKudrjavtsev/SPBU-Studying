@@ -8,83 +8,64 @@ namespace Robots_namespace
 {
     public class Robots
     {
-        /// <summary>
-        /// Method, that checks if all robots can be destroyed
-        /// </summary>
-        /// <param name="adjacencyMatrix"></param>
-        /// <param name="robotsPositions"></param>
-        /// <param name="matrixSize"></param>
-        /// <returns></returns>
-        public bool AllRobotsCanBeDestroyed(bool[,] adjacencyMatrix, int[] robotsPositions, int matrixSize)
+        public int[] robotsPositions;
+        public bool[,] adjacencyMatrix;
+        public bool[] used;
+        
+        public Robots(int[] robots, bool[,] matrix)
         {
-            // Vertexes where robots can be destroyed
-            bool[] criticalVertexes = new bool[matrixSize];
-            // Array of vertexes for check if vertex was visited
-            bool[] arrayOfVertexes = new bool[matrixSize];
+            this.robotsPositions = robots;
+            this.adjacencyMatrix = matrix;
 
-            for (int i = 0; i < matrixSize; i++)
-                for (int j = 0; j < robotsPositions.Length; j++)
-                    for (int k = 0; k < robotsPositions.Length; k++)
-                        if (k != j)
-                        {
-                            if (PathToVertex(adjacencyMatrix, robotsPositions[j], i,matrixSize, arrayOfVertexes) 
-                                && PathToVertex(adjacencyMatrix, robotsPositions[k], i, matrixSize, arrayOfVertexes))
-                            {
-                                criticalVertexes[i] = true;
-                                j = robotsPositions.Length;
-                                break;
-                            }
-                        }
-            for (int i = 0; i < robotsPositions.Length; i++)
-                for (int j = 0; j < matrixSize; j++)
-                {
-                    if (criticalVertexes[j])
-                        if (PathToVertex(adjacencyMatrix, robotsPositions[i], j, matrixSize, arrayOfVertexes))
-                            break;
-                    if (j == criticalVertexes.Length - 1)
-                        return false;
-                }
-
-            return true;
+            used = new bool[adjacencyMatrix.GetLength(0)];
+            for (int i = 0; i < used.Length; i++)
+                used[i] = false;     
         }
 
         /// <summary>
-        /// Method, that returns true if there is a path between 2 vertexes (bypassing one vertex) 
+        /// Depth first search through one vertex, finding connected components for vertex given as parameter
+        /// Returns number of robots in this connected component
         /// </summary>
-        /// <param name="adjacencyMatrix"></param>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="matrixSize"></param>
-        /// <param name="arrayOfVertexes"></param>
+        /// <param name="vertex"></param>
         /// <returns></returns>
-        private bool PathToVertex(bool[,] adjacencyMatrix, int a, int b, int matrixSize, bool[] arrayOfVertexes)
-        {            
-            arrayOfVertexes[a] = true;
-
-            for (int i = 0; i < matrixSize; i++)
+        public int Dfs(int vertex)
+        {
+            int robotsInComponent = 0;
+            used[vertex] = true;
+            for (int i = 0; i < adjacencyMatrix.GetLength(0); i++)
             {
-                if (adjacencyMatrix[a, i] && adjacencyMatrix[i, b])
+                if (adjacencyMatrix[vertex, i])
                 {
-                    Array.Clear(arrayOfVertexes, 0, arrayOfVertexes.Length);
-                    return true;
-                }
-                else if (adjacencyMatrix[a, i])
-                {
-                    for (int j = 0; j < matrixSize; j++)
+                    for (int j = 0; j < adjacencyMatrix.GetLength(0); j++)
                     {
-                        if (adjacencyMatrix[i, j] && !arrayOfVertexes[j])
-                        {
-                            if (PathToVertex(adjacencyMatrix, j, b, matrixSize, arrayOfVertexes))
-                            {
-                                Array.Clear(arrayOfVertexes, 0, arrayOfVertexes.Length);
-                                return true;
-                            }
-                        }
+                        if (!used[j] && adjacencyMatrix[i, j])
+                            robotsInComponent += Dfs(j);
                     }
                 }
             }
-            Array.Clear(arrayOfVertexes, 0, arrayOfVertexes.Length);
-            return false;
+
+            for (int i = 0; i < robotsPositions.Length; i++)
+            {
+                if (robotsPositions[i] == vertex)
+                    robotsInComponent++;
+            }
+
+            return robotsInComponent;
+        }
+
+        /// <summary>
+        /// Checks, if all robots can be destroyed
+        /// Returns true if can, false - otherwise
+        /// </summary>
+        /// <returns></returns>
+        public bool AllRobotsCanBeDestroyed()
+        {
+            for (int i = 0; i < adjacencyMatrix.GetLength(0); i++)
+            {
+                if (!used[i] && (Dfs(i) == 1))
+                    return false;
+            }
+            return true;
         }
     }
 }

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Robots")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Win-Yagd")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Robots")]
-[assembly: AssemblyCopyright("Copyright © Win-Yagd 2016")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("d5d893bc-b267-4a1f-ae90-00461f6fba64")]
+[assembly: Guid("d48d298b-8a26-4cd9-bc07-7dd6e16ed902")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
